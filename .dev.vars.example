@@ -1,0 +1,11 @@
+# Secrets for the ClearSight signer. Copy to `.dev.vars` for local `wrangler dev`,
+# or set each in production with `wrangler secret put <NAME>`. The Deploy to
+# Cloudflare button reads this file to know which secrets to prompt for.
+
+# A bucket API key scoped to Object Read & Write on your bucket (held only here).
+S3_ACCESS_KEY=
+S3_SECRET_KEY=
+
+# The HMAC secret ClearSight shows you ONCE when you save the signer config.
+# Paste that exact value here so the signer can authenticate ClearSight.
+CS_SHARED_SECRET=

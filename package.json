@@ -1,0 +1,40 @@
+{
+    "name": "clearsight-signer-test",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "deploy": "wrangler deploy",
+        "dev": "wrangler dev",
+        "bundle": "npx --yes esbuild src/index.js --bundle --format=esm --outfile=dist/clearsight-signer.bundled.js"
+    },
+    "dependencies": {
+        "aws4fetch": "^1.0.20"
+    },
+    "devDependencies": {
+        "wrangler": "^3.90.0"
+    },
+    "cloudflare": {
+        "label": "ClearSight Storage Signer",
+        "products": ["Workers"],
+        "bindings": {
+            "S3_ENDPOINT": {
+                "description": "Your S3-compatible API endpoint. R2: `https://<account>.r2.cloudflarestorage.com`. Backblaze B2: `https://s3.<region>.backblazeb2.com`. Wasabi: `https://s3.wasabisys.com`."
+            },
+            "BUCKET": {
+                "description": "The bucket name ClearSight media is written to (under the `clearsight/` prefix)."
+            },
+            "S3_REGION": {
+                "description": "Signing region. Use `auto` for Cloudflare R2; for B2/Wasabi/S3 use the bucket's region."
+            },
+            "S3_ACCESS_KEY": {
+                "description": "Access key ID of a bucket token scoped to **Object Read & Write**. Stored only in this Worker."
+            },
+            "S3_SECRET_KEY": {
+                "description": "Secret access key for the bucket token. Stored only in this Worker — ClearSight never sees it."
+            },
+            "CS_SHARED_SECRET": {
+                "description": "The HMAC secret ClearSight shows **once** when you save the signer configuration. Paste it here so the Worker can authenticate ClearSight's signing requests."
+            }
+        }
+    }
+}

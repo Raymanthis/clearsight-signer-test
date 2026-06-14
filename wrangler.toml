@@ -1,0 +1,20 @@
+name = "clearsight-signer-test"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# Non-secret config. Fill these in for your provider/bucket.
+#   S3_ENDPOINT examples:
+#     https://<account>.r2.cloudflarestorage.com   (Cloudflare R2)
+#     https://s3.us-west-002.backblazeb2.com        (Backblaze B2)
+#     https://s3.wasabisys.com                      (Wasabi)
+#   S3_REGION: "auto" for R2; the bucket's region for B2/Wasabi/S3.
+[vars]
+S3_ENDPOINT = "https://e147a540233847f09aafabc56d9a8982.r2.cloudflarestorage.com"
+BUCKET = "clearsight-byos-demo"
+S3_REGION = "auto"
+
+# Secrets are NOT stored here — set them with `wrangler secret put`
+# (or via the Deploy to Cloudflare button prompt):
+#   wrangler secret put S3_ACCESS_KEY
+#   wrangler secret put S3_SECRET_KEY
+#   wrangler secret put CS_SHARED_SECRET
